@@ -165,7 +165,7 @@ console.log(account.latest)
 
 console.log(account.latest=50)
 */
-
+/*
 const PersonProto = {
   calAge() {
     console.log(2024 - this.birthYear);
@@ -188,3 +188,41 @@ console.log(ram.__proto__ === PersonProto);
 const anjila = Object.create(PersonProto);
 anjila.init('Anjila', 2003);
 anjila.calAge();
+*/
+
+//challenge 2
+
+
+class CarCl{
+    constructor(make, speed){
+    this.make=make;
+    this.speed=speed;
+}
+
+accelerate(){
+    this.speed+=10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+}
+
+break(){
+    this.speed-=5;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+}
+
+get speedUS(){
+    return this.speed/1.6;
+}
+
+set speedUs(speed){
+    this.speed=speed*1.6;
+}
+}
+const ford= new CarCl('Ford', 120);
+console.log(ford.speedUS)
+ford.accelerate();
+ford.accelerate();
+ford.accelerate();
+ford.accelerate();
+ford.break();
+ford.speedUs=50;
+console.log(ford)
