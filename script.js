@@ -95,8 +95,8 @@
 // const PersonCl=class{}
 //class declaration
 class PersonCl {
-    constructor(firstName, birthYear){
-     this.firstName=firstName;
+    constructor(fullName, birthYear){
+     this.fullName=fullName;
      this.birthYear=birthYear;
     }
     //Methods will be added to prototype property
@@ -104,20 +104,56 @@ class PersonCl {
     console.log(2024-this.birthYear);
  }
  greet(){
- console.log(`Hey ${this.firstName}`);
+ console.log(`Hey ${this.fullName}`);
+ }
+
+ get age(){
+    return 2024-this.birthYear;
+ }
+ set fullName( name){
+    console.log(name);
+    if(name.includes(' ')){
+        this._fullName=name;
+
+    }else{
+        alert(`${this.name} is not full name.`)
+    }
+ }
+ get fullName(){
+ return this._fullName;
  }
 }
-const sunita= new PersonCl('sunita', 2004);
+const sunita= new PersonCl('Sunita Khatri', 2004);
 console.log(sunita);
 sunita.calAge();
 
 console.log(sunita.__proto__===PersonCl.prototype);
 
 // PersonCl.prototype.greet=function(){
-//     console.log(`Hey ${this.firstName}`);
+//     console.log(`Hey ${this.fullName}`);
 // }
 sunita.greet();
+console.log(sunita.age);
 
 //1. classes are Not hoisted
 //2. classes are first-class citizen
 //3. classes are executed in strict mode
+  
+const walter= new PersonCl('Walter',1967)
+//Getters and Setters
+
+const account={
+    owner:'Bishal',
+     movements:[200,530,120,300],
+     get latest(){
+return this.movements.slice(-1).pop();
+
+     },
+     set latest(mov){
+      this.movements.push(mov);
+     }
+}
+
+console.log(account.latest)
+
+console.log(account.latest=50)
