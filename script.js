@@ -4,7 +4,7 @@
 // //instance properties
 // this.firstName=firstName;
 // this.birthYear=birthYear;
-// //Never do this 
+// //Never do this
 // // this.calAge=function(){
 // //     console.log(2024-this.birthYear);
 // // };
@@ -55,7 +55,6 @@
 
 // // console.log(arr.__proto__.__proto__);
 
-
 // Array.prototype.unique=function (){
 //     return [...new Set(this)];
 // }
@@ -94,6 +93,7 @@
 //class expression
 // const PersonCl=class{}
 //class declaration
+/*
 class PersonCl {
     constructor(fullName, birthYear){
      this.fullName=fullName;
@@ -122,6 +122,12 @@ class PersonCl {
  get fullName(){
  return this._fullName;
  }
+
+ static hey(){
+
+    console.log("Hey there!");
+    console.log(this);
+ }
 }
 const sunita= new PersonCl('Sunita Khatri', 2004);
 console.log(sunita);
@@ -139,7 +145,8 @@ console.log(sunita.age);
 //2. classes are first-class citizen
 //3. classes are executed in strict mode
   
-const walter= new PersonCl('Walter',1967)
+const walter= new PersonCl('Walter Dhakal',1967)
+PersonCl.hey();
 //Getters and Setters
 
 const account={
@@ -157,3 +164,27 @@ return this.movements.slice(-1).pop();
 console.log(account.latest)
 
 console.log(account.latest=50)
+*/
+
+const PersonProto = {
+  calAge() {
+    console.log(2024 - this.birthYear);
+  },
+
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const ram = Object.create(PersonProto);
+console.log(ram);
+ram.name = 'Ram';
+ram.birthYear = 2001;
+ram.calAge();
+
+console.log(ram.__proto__ === PersonProto);
+
+const anjila = Object.create(PersonProto);
+anjila.init('Anjila', 2003);
+anjila.calAge();
