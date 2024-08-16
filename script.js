@@ -44,16 +44,16 @@ console.log(Person.prototype.isPrototypeOf(Person))
 Person.prototype.species='Homo sapiens';
 console.log(bishal.species);
 
-console.log(bishal.__proto__);
-console.log(bishal.__proto__.__proto__);
-console.log(bishal.__proto__.__proto__.__proto__);
+// console.log(bishal.__proto__);
+// console.log(bishal.__proto__.__proto__);
+// console.log(bishal.__proto__.__proto__.__proto__);
 
-console.log(Person.prototype.constructor);
+//console.log(Person.prototype.constructor);
 
 const arr=[3,3,6,9,3,10];
-console.log(arr.__proto__===Array.prototype);
+// console.log(arr.__proto__===Array.prototype);
 
-console.log(arr.__proto__.__proto__);
+// console.log(arr.__proto__.__proto__);
 
 
 Array.prototype.unique=function (){
@@ -61,5 +61,31 @@ Array.prototype.unique=function (){
 }
 console.log(arr.unique());
 
-const h1=document.querySelector("h1");
-console.dir(x=>x+1);
+// const h1=document.querySelector("h1");
+// console.dir(x=>x+1);
+
+//challenge 1
+const Car= function(make, speed){
+    this.make=make;
+    this.speed=speed;
+}
+
+Car.prototype.accelerate=function(){
+
+    this.speed+=10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+}
+Car.prototype.break=function(){
+
+    this.speed-=5;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+}
+
+const bmw=new Car("BMW", 120);
+const mercedes=new Car("Mercedes", 95);
+
+console.log(bmw, mercedes);
+bmw.accelerate();
+bmw.accelerate();
+bmw.break();
+bmw.accelerate();
