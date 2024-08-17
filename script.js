@@ -310,6 +310,7 @@ biki.introduce();
 */
 
 //Using ES6 classes
+/*
 class PersonCl {
     constructor(fullName, birthYear){
      this.fullName=fullName;
@@ -364,3 +365,31 @@ class StudentCl extends PersonCl {
 const asmi= new StudentCl("Asmi Panthi", 2001, "BBA");
 asmi.introduce();
 asmi.calAge()
+*/
+const PersonProto = {
+    calAge() {
+      console.log(2024 - this.birthYear);
+    },
+  
+    init(firstName, birthYear) {
+      this.firstName = firstName;
+      this.birthYear = birthYear;
+    },
+  };
+const bishal= Object.create(PersonProto);
+const StudentProto=Object.create(PersonProto);
+
+StudentProto.init=function(firstName, birthYear, course){
+    PersonProto.init.call(this, firstName, birthYear);
+    this.course=course;
+}
+
+StudentProto.introduce=function(){
+    console.log(`My name is ${this.firstName} and i study ${this.course}`);
+}
+
+const bijay=Object.create(StudentProto);
+bijay.init('Bijay', 1999, 'computer SCIENCE');
+bijay.introduce()
+
+bijay.calAge()
