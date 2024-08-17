@@ -218,11 +218,50 @@ set speedUs(speed){
 }
 }
 const ford= new CarCl('Ford', 120);
-console.log(ford.speedUS)
-ford.accelerate();
-ford.accelerate();
-ford.accelerate();
-ford.accelerate();
-ford.break();
-ford.speedUs=50;
-console.log(ford)
+// console.log(ford.speedUS)
+// ford.accelerate();
+// ford.accelerate();
+// ford.accelerate();
+// ford.accelerate();
+// ford.break();
+// ford.speedUs=50;
+// console.log(ford)
+
+const Person=function(firstName,birthYear){
+// console.log(this);
+//instance properties
+this.firstName=firstName;
+this.birthYear=birthYear;
+//Never do this
+this.calAge=function(){
+    console.log(2024-this.birthYear);
+};
+}
+const Student =function(firstName, birthYear,course ){
+    Person.call(this,firstName,birthYear);
+    this.firstName=firstName;
+    this.birthYear=birthYear;
+    this.course=course;
+
+}
+
+ 
+Student.prototype=Object.create(Person.prototype)
+
+
+Student.prototype.introduce=function(){
+console.log(`My name is ${this.firstName} and i study ${this.course}`)
+}
+
+const biki= new Student("Biki",2003, 'computer Science');
+console.log(biki)
+biki.introduce();
+ biki.calAge();
+
+
+ console.log(biki instanceof Student)
+ console.log(biki.__proto__);
+ console.log(biki.__proto__.__proto__);
+
+
+ console.dir(Student.prototype.constructor)
