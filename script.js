@@ -365,7 +365,7 @@ class StudentCl extends PersonCl {
 const asmi= new StudentCl("Asmi Panthi", 2001, "BBA");
 asmi.introduce();
 asmi.calAge()
-*/
+*//*
 const PersonProto = {
     calAge() {
       console.log(2024 - this.birthYear);
@@ -393,3 +393,42 @@ bijay.init('Bijay', 1999, 'computer SCIENCE');
 bijay.introduce()
 
 bijay.calAge()
+*/
+
+//class example2
+class Account{
+    constructor(owner, currency, pin) {
+        this.owner=owner;
+        this.currency=currency;
+        this.pin=pin;
+        this.movements=[];
+        this.locale=navigator.language;
+        console.log(`Thanks for opening an account, ${owner}`)
+    }
+    deposit(val){
+        this,this.movements.push(val);
+    }
+    withdraw(val){
+        this.deposit(-val);
+    }
+    approveLoan(val){
+        return true;
+    }
+    requestLoan(val){
+    if(this.approveLoan(val)){
+        this.deposit(val);
+        console.log(`Loan approved!!`)
+    }
+    }
+}
+
+const acc1= new Account("Bishal", "Rs", 1111);
+
+// acc1.movements.push(250);
+// acc1.movements.push(-20);
+
+acc1.deposit(50);
+acc1.withdraw(20)
+acc1.requestLoan(1000);
+acc1.approveLoan(1000)
+console.log(acc1)
