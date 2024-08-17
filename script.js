@@ -266,6 +266,7 @@ biki.introduce();
 
  console.dir(Student.prototype.constructor)
  */
+/*
  //challenge 3
   const Car= function(make, speed){
         this.make=make;
@@ -306,3 +307,60 @@ biki.introduce();
 
     tesla.break();
     tesla.accelerate()
+*/
+
+//Using ES6 classes
+class PersonCl {
+    constructor(fullName, birthYear){
+     this.fullName=fullName;
+     this.birthYear=birthYear;
+    }
+    //Methods will be added to prototype property
+ calAge(){
+    console.log(2024-this.birthYear);
+ }
+ greet(){
+ console.log(`Hey ${this.fullName}`);
+ }
+
+ get age(){
+    return 2024-this.birthYear;
+ }
+ set fullName( name){
+    console.log(name);
+    if(name.includes(' ')){
+        this._fullName=name;
+
+    }else{
+        alert(`${this.name} is not full name.`)
+    }
+ }
+ get fullName(){
+ return this._fullName;
+ }
+
+ static hey(){
+
+    console.log("Hey there!");
+  
+ }
+}
+class StudentCl extends PersonCl {
+   constructor(fullName, birthYear,course){
+    //Always need to happen first
+    super(fullName, birthYear);
+    this.course=course;
+
+   }
+   introduce(){
+    console.log(`My name is ${this.fullName} and i study ${this.course}`);
+
+   }
+   calAge(){
+    console.log(`I'm ${2024-this.birthYear} years old, but as a student I feel more like ${2024-this.birthYear+10}`)
+   }
+}
+
+const asmi= new StudentCl("Asmi Panthi", 2001, "BBA");
+asmi.introduce();
+asmi.calAge()
