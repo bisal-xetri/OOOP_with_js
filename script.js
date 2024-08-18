@@ -402,7 +402,7 @@ bijay.calAge()
 //public method
 //private method
 //there is static version
-
+/*
 class Account {
   //public field (instances)
   locale = navigator.language;
@@ -472,3 +472,59 @@ Account.helper();
 //chaining 
 acc1.deposit(300).deposit(500)
 .withdraw(35).requestLoan(2500).withdraw(400);
+*/
+//coding challenge 4
+class CarCl{
+    constructor(make, speed){
+    this.make=make;
+    this.speed=speed;
+}
+
+accelerate(){
+    this.speed+=10;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+    return this
+}
+
+break(){
+    this.speed-=5;
+    console.log(`${this.make} is going at ${this.speed} km/h`);
+    return this;
+}
+
+get speedUS(){
+    return this.speed/1.6;
+}
+
+set speedUs(speed){
+    this.speed=speed*1.6;
+    return this
+}
+}
+
+class EVCL extends CarCl{
+    
+#charge;
+constructor(make, speed, charge){
+    super( make, speed)
+   
+    this.#charge=charge;
+}
+
+chargeBattery (chargeTo){
+    this.#charge=chargeTo;
+} 
+accelerate(){
+    this.speed+=20;
+    this.#charge--;
+    console.log(`${this.make} is going at ${this.speed} km/h, with a charge of ${this.charge}`);
+
+ }
+ 
+}
+
+const rivian=new EVCL('Rivian' ,123,55);
+console.log(rivian)
+// console.log(rivian.#charge)
+
+rivian.accelerate().accelerate().break().chargeBattery(40)
