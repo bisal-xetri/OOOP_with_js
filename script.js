@@ -365,7 +365,7 @@ class StudentCl extends PersonCl {
 const asmi= new StudentCl("Asmi Panthi", 2001, "BBA");
 asmi.introduce();
 asmi.calAge()
-*//*
+*/ /*
 const PersonProto = {
     calAge() {
       console.log(2024 - this.birthYear);
@@ -396,44 +396,72 @@ bijay.calAge()
 */
 
 //class example2
-class Account{
-    constructor(owner, currency, pin) {
-        this.owner=owner;
-        this.currency=currency;
-        this._pin=pin;
-        //protected
-        this._movements=[];
-        this.locale=navigator.language;
-        console.log(`Thanks for opening an account, ${owner}`)
+
+//public field
+//private fields
+//public method
+//private method
+//there is static version
+
+class Account {
+  //public field (instances)
+  locale = navigator.language;
+
+
+
+  //2) private Field
+  #movements = [];
+  #pin;
+
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.#pin = pin;
+    //protected
+    // this._movements=[];
+    // this.locale=navigator.language;
+    console.log(`Thanks for opening an account, ${owner}`);
+  }
+
+  ////public method
+  getMovements() {
+    return this.#movements;
+  }
+  deposit(val) {
+    this, this.#movements.push(val);
+  }
+  withdraw(val) {
+    this.deposit(-val);
+  }
+  
+  requestLoan(val) {
+    if (this._approveLoan(val)) {
+      this.deposit(val);
+      console.log(`Loan approved!!`);
     }
-    getMovements(){
-        return this._movements;
-    }
-    deposit(val){
-        this,this._movements.push(val);
-    }
-    withdraw(val){
-        this.deposit(-val);
-    }
-    _approveLoan(val){
-        return true;
-    }
-    requestLoan(val){
-    if(this._approveLoan(val)){
-        this.deposit(val);
-        console.log(`Loan approved!!`)
-    }
-    }
+  }
+  static helper(){
+    console.log("Helper")
+  }
+  //private method
+  _approveLoan(val) {
+    return true;
+  }
 }
 
-const acc1= new Account("Bishal", "Rs", 1111);
+const acc1 = new Account('Bishal', 'Rs', 1111);
 
-acc1._movements.push(250);
-acc1._movements.push(-20);
+// acc1.#movements.push(250);
+// acc1.#movements.push(-20);
 
 acc1.deposit(50);
-acc1.withdraw(20)
+acc1.withdraw(20);
 acc1.requestLoan(1000);
-acc1._approveLoan(1000 )
-console.log(acc1.getMovements())
-console.log(acc1)
+// acc1.#approveLoan(1000);
+console.log(acc1.getMovements());
+console.log(acc1);
+
+//console.log(acc1.movements);
+// console.log(acc1.#pin);
+// console.log(acc1.#approveLoan(1000))
+Account.helper();
